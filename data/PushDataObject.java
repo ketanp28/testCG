@@ -48,6 +48,20 @@ public class PushDataObject extends Scriptable {
             return new Integer( DECLINE_USERDCU );
         } else if( name.equals( DECLINE_USERPND_VALUE ) ) {
             return new Integer( DECLINE_USERPND );
+        } else if( name.equals( DECLINE_USERREQ_VALUE ) ) {
+            return new Integer( DECLINE_USERREQ );
+        } else if( name.equals( DECLINE_USERRFS_VALUE ) ) {
+            return new Integer( DECLINE_USERRFS );
+        } else if( name.equals( PROPERTY_IS_CHANNEL_ENCRYPTED ) ) {
+            return new Boolean( _pushData.isChannelEncrypted() );
+        } else if( name.equals( PROPERTY_PAYLOAD ) ) {
+            return parsePayload( _pushData.getPayload() );
+        } else if( name.equals( FUNCTION_GET_HEADER_FIELD ) ) {
+            return new GetHeaderFieldFunction();
+        } else if( name.equals( FUNCTION_GET_REQUEST_URI ) ) {
+            return new GetRequestURIFunction();
+        } else if( name.equals( FUNCTION_GET_SOURCE ) ) {
+            return new GetSourceFunction();
         }
 
         return super.getField( name );
@@ -69,7 +83,13 @@ public class PushDataObject extends Scriptable {
             return UNDEFINED;
         }
 
-        
+        protected FunctionSignature[] getFunctionSignatures() {
+            FunctionSignature fs1 = new FunctionSignature( 1 );
+            fs1.addParam( Integer.class, true );
+            FunctionSignature fs2 = new FunctionSignature( 1 );
+            fs2.addParam( String.class, true );
+            return new FunctionSignature[] { fs1, fs2 };
+        }
     }
 
 

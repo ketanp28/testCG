@@ -10,7 +10,7 @@ public final class ParseURLFunction extends ScriptableFunctionBase {
     public static final String NAME = "parseURL";
 
 
-    public Object execute3( Object thiz, Object[] args ) throws Exception {
+    public Object execute( Object thiz, Object[] args ) throws Exception {
         return new URLObject( args[ 0 ].toString() );
     }
 

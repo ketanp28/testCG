@@ -17,7 +17,8 @@ public class UtilsNamespace extends Scriptable {
         _fields.put( GenerateUniqueIdFunction.NAME, new GenerateUniqueIdFunction() );
         _fields.put( DocumentToBlobFunction.NAME, new DocumentToBlobFunction() );
         _fields.put( ParseURLFunction.NAME, new ParseURLFunction() );
-        
+        _fields.put( StringToBlobFunction.NAME, new StringToBlobFunction() );
+        _fields.put( BlobToStringFunction.NAME, new BlobToStringFunction() );
     }
 
 

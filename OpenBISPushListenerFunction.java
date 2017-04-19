@@ -28,7 +28,9 @@ public class OpenBISPushListenerFunction extends ScriptableFunctionBase {
         if( maxQueueCapObj != UNDEFINED ) {
             maxQueueCap = ( (Integer) maxQueueCapObj ).intValue();
         }
-        
+        ScriptableFunction onData = (ScriptableFunction) args[ 1 ];
+        ScriptableFunction onRegister = (ScriptableFunction) args[ 2 ];
+        ScriptableFunction onSimChange = (ScriptableFunction) args[ 3 ];
         PushService.getInstance().openBISPushChannel( port, appId, serverUrl, wakeUpPage, maxQueueCap, onData, onRegister,
                 onSimChange );
         return UNDEFINED;
@@ -59,7 +61,10 @@ public class OpenBISPushListenerFunction extends ScriptableFunctionBase {
             if( serverUrl == null || serverUrl == UNDEFINED ) {
                 throw new IllegalArgumentException( "serverUrl is missing." );
             }
-            
+            Object wakeUpPage = obj.getField( KEY_WAKEUP_PAGE );
+            if( wakeUpPage == null || wakeUpPage == UNDEFINED ) {
+                throw new IllegalArgumentException( "AppId is missing." );
+            }
         } catch( Exception e ) {
             throw new IllegalArgumentException( "Error retrieving arguments: " + e.getMessage() );
         }

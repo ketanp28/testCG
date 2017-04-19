@@ -8,7 +8,7 @@ import blackberry.core.ScriptableFunctionBase;
 class ClosePushListenerFunction extends ScriptableFunctionBase {
 
 
-    protected Object execute2( Object thiz, Object[] args ) throws Exception {
+    protected Object execute( Object thiz, Object[] args ) throws Exception {
         if( args != null && args.length > 0 ) {
             int port = ( (Integer) args[ 0 ] ).intValue();
             PushService.getInstance().closePushChannel( port );

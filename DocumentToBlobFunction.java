@@ -37,5 +37,9 @@ public final class DocumentToBlobFunction extends ScriptableFunctionBase {
     }
 
 
-    
+    protected FunctionSignature[] getFunctionSignatures() {
+        FunctionSignature fs = new FunctionSignature( 1 );
+        fs.addParam( Document.class, true );
+        return new FunctionSignature[] { fs };
+    }
 }

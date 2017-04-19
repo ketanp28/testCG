@@ -22,7 +22,16 @@ class OpenPushListenerFunction extends ScriptableFunctionBase {
     }
 
 
-    
+    protected void validateArgs( Object[] args ) {
+        super.validateArgs( args );
+
+        int port = ( (Integer) args[ 1 ] ).intValue();
+        if( port < 0 ) {
+            throw new IllegalArgumentException( "Invalid port." );
+        } else if( !PushService.isValidPort( port ) ) {
+            throw new IllegalArgumentException( "Reserved port" );
+        }
+    }
 
  
     protected FunctionSignature[] getFunctionSignatures() {

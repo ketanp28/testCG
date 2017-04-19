@@ -26,7 +26,11 @@ public final class BlobToStringFunction extends ScriptableFunctionBase {
             return new String( data );
         }
 
-        
+        if( encoding.equalsIgnoreCase( BASE64_ENCODING ) ) {
+            byte[] encoded = Base64OutputStream.encode( data, 0, data.length, false, false );
+            String encodedStr = new String( encoded, UTF8_ENCODING );
+            return encodedStr;
+        }
 
         return new String( data, encoding );
     }
@@ -35,6 +39,7 @@ public final class BlobToStringFunction extends ScriptableFunctionBase {
     protected FunctionSignature[] getFunctionSignatures() {
         FunctionSignature fs = new FunctionSignature( 2 );
         fs.addParam( Blob.class, true );
+        fs.addParam( String.class, false );
         return new FunctionSignature[] { fs };
     }
 }
